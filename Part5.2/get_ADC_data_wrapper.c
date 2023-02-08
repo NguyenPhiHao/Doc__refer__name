@@ -51,8 +51,6 @@ void get_ADC_data_Outputs_wrapper(const real_T *u0,
 // ET-VPF F1KM Product Version - V1.00.00 - Req. Supporting ADC unit 1  for F1KM-S4
 // ID: ET_VPF_V1.00.00_CD_Req_ADCUnit1_001 
 // Reference: {ET_VPF_V1.00.00_UD_Req_ADCUnit1_001, ET_VPF_V1.00.00_UD_Req_ADCUnit1_004, ET_VPF_V1.00.00_UD_Req_ADCUnit1_007}
-
-
 # ifdef ETVPF
     // Generated source code
     char unit_ = (char)*unit;

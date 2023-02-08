@@ -133,8 +133,6 @@
 #define SAVE_CODE_ONLY        0
 #define SFUNWIZ_REVISION      3.0
 /* %%%-SFUNWIZ_defines_Changes_END --- EDIT HERE TO _BEGIN */
-
-
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 #include "simstruc.h"
 #define PARAM_DEF0(S) ssGetSFcnParam(S, 0)
@@ -153,11 +151,9 @@ extern void get_TAUD_Data_Outputs_wrapper(const real_T *duty,
 			const real_T *mode, const int_T p_width2,
 			const int_T y_width,
 			const int_T u_width);
-			
-			
-/*===================================================================================================================*
- *                                                     S-function methods *
- *===================================================================================================================*/
+/*====================*
+ * S-function methods *
+ *====================*/
 #define MDL_CHECK_PARAMETERS
 #if defined(MDL_CHECK_PARAMETERS) && defined(MATLAB_MEX_FILE)
 /* Function: mdlCheckParameters =============================================
@@ -210,13 +206,6 @@ static void mdlCheckParameters(SimStruct *S)
     return;
 }
 #endif /* MDL_CHECK_PARAMETERS */
-
-
-
-
-
-
-
 /* Function: mdlInitializeSizes ===============================================
  * Abstract:
  *   Setup sizes of the various vectors.
@@ -290,9 +279,6 @@ static void mdlInitializeSizes(SimStruct *S)
                      SS_OPTION_WORKS_WITH_CODE_REUSE));
 }
 
-
-
-
 #define MDL_SET_INPUT_PORT_FRAME_DATA
 static void mdlSetInputPortFrameData(SimStruct  *S,
                                      int_T      port,
@@ -300,11 +286,6 @@ static void mdlSetInputPortFrameData(SimStruct  *S,
 {
     ssSetInputPortFrameData(S, port, frameData);
 }
-
-
-
-
-
 /* Function: mdlInitializeSampleTimes =========================================
  * Abstract:
  *    Specifiy  the sample time.
@@ -348,12 +329,6 @@ static void mdlSetWorkWidths(SimStruct *S)
 
 #endif
 
-
-
-
-
-
-
 #define MDL_START  /* Change to #undef to remove function */
 #if defined(MDL_START)
 /* Function: mdlStart =======================================================
@@ -366,14 +341,6 @@ static void mdlStart(SimStruct *S)
 {
 }
 #endif /*  MDL_START */
-
-
-
-
-
-
-
-
 
 /* Function: mdlOutputs =======================================================
  *
@@ -395,9 +362,6 @@ static void mdlOutputs(SimStruct *S, int_T tid)
 
     get_TAUD_Data_Outputs_wrapper(duty, start_stop, pulse, y0, unit, p_width0, TAUDid, p_width1, mode, p_width2, y_width, u_width);
 }
-
-
-
 
 /* Function: mdlTerminate =====================================================
  * Abstract:

@@ -1,3 +1,4 @@
+
 function gen_make_file(include_path, source_folder, modelName, blockName, codeGenTarget, exeFlag)
 	
 	
@@ -14,7 +15,7 @@ function gen_make_file(include_path, source_folder, modelName, blockName, codeGe
     devSeries = get_param(modelName, 'DeviceSeries');
     csPath    = get_param(modelName, 'CSPath');
     buildTool = get_param(modelName, 'BuildTool');
-        
+    
     isGHS = strcmp(buildTool, 'GHS Compiler');
     
     include_path  = strrep(include_path,'\','/');
@@ -30,19 +31,25 @@ function gen_make_file(include_path, source_folder, modelName, blockName, codeGe
 %   csPath = get_param(modelName, 'CSPath'); 			Đọc giá trị của tham số CSPath trong mô hình modelName.
 %   buildTool = get_param(modelName, 'BuildTool'); 		Đọc giá trị của tham số BuildTool trong mô hình modelName.
 %   
-%	isGHS = strcmp(buildTool, 'GHS Compiler'); 		So sánh giá trị của tham số buildTool với chuỗi 'GHS Compiler'. Nếu giá trị trùng nhau, giá trị của isGHS sẽ là 1, nếu không trùng nhau, giá trị của isGHS sẽ là 0.
+%	isGHS = strcmp(buildTool, 'GHS Compiler'); 		    So sánh giá trị của tham số buildTool với chuỗi 'GHS Compiler'. Nếu giá trị trùng nhau, giá trị của isGHS sẽ là 1, 
+%                                                       nếu không trùng nhau, giá trị của isGHS sẽ là 0.
 %
-%	Đoạn code trên đang thực hiện việc sử dụng hàm strrep để thay thế ký tự '' trong chuỗi include_path, source_folder và csPath thành '/'.
-%   include_path  = strrep(include_path,'\','/');
-%   source_folder = strrep(source_folder,'\','/');
-%   csPath        = strrep(csPath,'\','/');
+%   include_path  = strrep(include_path,'\','/');       Sử dụng hàm strrep để thay thế ký tự '\' trong chuỗi include_path thành '/'.
+%   source_folder = strrep(source_folder,'\','/');      Sử dụng hàm strrep để thay thế ký tự '\' trong chuỗi source_folder thành '/'.
+%   csPath        = strrep(csPath,'\','/');             Sử dụng hàm strrep để thay thế ký tự '\' trong chuỗi csPath thành '/'.
 
 
-    
 
+
+%	----------------------------------------------------------------------------------------------------------------------
 %	---------------------------------------------------------------------------------------------------------------------
-%		
-%	---------------------------------------------------------------------------------------------------------------------
+%	Đoạn code này trong Matlab sử dụng hàm find_system để tìm kiếm các đối tượng có chế độ MaskType trong model hoặc subsystem cho trước (codeGenTarget).
+%   Hàm find_system sẽ trả về danh sách các đối tượng tìm được với từng MaskType tùy chọn.
+%
+%   Ví dụ:
+%   Biến ADCList sẽ chứa danh sách các đối tượng có MaskType là "ADCH".
+%   Biến PortInList sẽ chứa danh sách các đối tượng có MaskType là "Port_In".
+%   ...
 
     ADCList     = find_system(codeGenTarget, 'MaskType', 'ADCH');
     PortInList  = find_system(codeGenTarget, 'MaskType', 'Port_In');
@@ -52,9 +59,20 @@ function gen_make_file(include_path, source_folder, modelName, blockName, codeGe
     RLIN3nSendList    = find_system(codeGenTarget, 'MaskType', 'RLIN3n_send');
     RLIN3nReceiveList = find_system(codeGenTarget, 'MaskType', 'RLIN3n_receive');
     
-	%% ET-VPF F1KM Product Version - V1.00.00 - Req. 03
-    %% ID: ET_VPF_V1.00.00_CD_Req_03_004
-    %% Reference: {ET_VPF_V1.00.00_UD_Req_03_001, ET_VPF_V1.00.00_UD_Req_03_002, ET_VPF_V1.00.00_UD_Req_03_004, ET_VPF_V1.00.00_UD_Req_03_006}
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+ 
+
+
+%   Đoạn code này là một đoạn Matlab code, chứa các hàm tìm kiếm, so sánh và lấy thông tin từ một hệ thống đã được xác định trước.
+
+%   TAUDList = find_system(codeGenTarget, 'MaskType', 'TAUD');: Hàm find_system sẽ tìm kiếm các thành phần có loại mặt nạ là 'TAUD' trong hệ thống xác định bởi biến codeGenTarget. Kết quả được lưu trữ trong biến TAUDList.
+%   taudChannel = 0;: Khởi tạo giá trị cho biến taudChannel là 0.
+%   if ~isempty(TAUDList): Nếu mảng TAUDList không trống (tìm thấy các thành phần có loại mặt nạ là 'TAUD'), thì sẽ tiến hành các hành động bên trong if.
+%   taudMode = get_param(TAUDList, 'mode');: Lấy giá trị của thuộc tính 'mode' từ các thành phần trong mảng TAUDList bằng hàm get_param.
+%   if strcmp(taudMode, "Triangle PWM Output"): So sánh giá trị của biến taudMode với chuỗi 'Triangle PWM Output' bằng hàm strcmp. Nếu giá trị bằng, thì sẽ thực hiện hành động bên trong if.
+%   taudChannel = get_taud_channel([pwd '\SC_project\src\smc_gen\Config_TAUD01\Config_TAUD01.c']);: Lấy giá trị từ hàm get_taud_channel với đường dẫn đến tệp 'Config_TAUD01
+
     
 	TAUDList = find_system(codeGenTarget, 'MaskType', 'TAUD');
     taudChannel = 0;
@@ -69,14 +87,11 @@ function gen_make_file(include_path, source_folder, modelName, blockName, codeGe
     end
 	
 	
-	
-	
-	
-	
-    %% ET-VPF F1KM Product Version - V1.00.00 - Req. 03 - End    
-    %% ET-VPF F1KM Product Version - V1.00.00 - Req. 04 - End
-	
-    % Tạo file chung cho thiết bị device
+%--------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------
+%   Đoạn code trên dùng để xác định thư mục chứa các tập tin chung tùy thuộc vào dòng thiết bị (device series) đang sử dụng. Nếu biến devSeries bằng RH850/F1KM-S1,
+%   biến commonFileFolder sẽ được gán bằng 'Common_files_F1KM_S1'. Nếu biến devSeries bằng RH850/F1KM-S4, biến commonFileFolder sẽ được gán bằng 'Common_files_F1KM_S4'.
+%   Trong trường hợp khác, biến commonFileFolder sẽ trống.
 	
     %if isGHS
     %    buildTool = 'GHS';
@@ -87,9 +102,9 @@ function gen_make_file(include_path, source_folder, modelName, blockName, codeGe
 	
     buildTool = 'Renesas';
     
-    if strcmp(devSeries, 'RH850/F1KM-S1')						% So sánh devSeries và RH850/F1KM-S1
+    if strcmp(devSeries, 'RH850/F1KM-S1')		
         commonFileFolder = 'Common_files_F1KM_S1';
-    elseif strcmp(devSeries, 'RH850/F1KM-S4')	                % So sánh devSeries và RH850/F1KM-S4
+    elseif strcmp(devSeries, 'RH850/F1KM-S4')
         commonFileFolder = 'Common_files_F1KM_S4';			
     % elseif strcmp(devSeries, 'RH850/E2M')
     %   commonFileFolder = 'Common_files_E2M';

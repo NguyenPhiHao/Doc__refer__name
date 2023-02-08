@@ -99,10 +99,6 @@
 #define SAVE_CODE_ONLY        0
 #define SFUNWIZ_REVISION      3.0
 /* %%%-SFUNWIZ_defines_Changes_END --- EDIT HERE TO _BEGIN */
-
-
-
-
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 #include "simstruc.h"
 #define PARAM_DEF0(S) ssGetSFcnParam(S, 0)

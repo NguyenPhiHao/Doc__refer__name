@@ -107,14 +107,9 @@ extern void get_Port_Data_Outputs_wrapper(const boolean_T *u0,
 			boolean_T *y0,
 			const real_T *port, const int_T p_width0,
 			const real_T *pin, const int_T p_width1);
-
-
-
-/*==============================================================================================================*
- *                                        S-function methods *
- *==============================================================================================================*/
- 
-
+/*====================*
+ * S-function methods *
+ *====================*/
 #define MDL_CHECK_PARAMETERS
 #if defined(MDL_CHECK_PARAMETERS) && defined(MATLAB_MEX_FILE)
 /* Function: mdlCheckParameters =============================================
@@ -158,12 +153,6 @@ static void mdlCheckParameters(SimStruct *S)
     return;
 }
 #endif /* MDL_CHECK_PARAMETERS */
-
-
-
-
-
-
 /* Function: mdlInitializeSizes ===============================================
  * Abstract:
  *   Setup sizes of the various vectors.
@@ -218,9 +207,6 @@ static void mdlInitializeSizes(SimStruct *S)
                      SS_OPTION_WORKS_WITH_CODE_REUSE));
 }
 
-
-/* ----------------------------------------------------------------------------------------------------- */
-
 #define MDL_SET_INPUT_PORT_FRAME_DATA
 static void mdlSetInputPortFrameData(SimStruct  *S,
                                      int_T      port,
@@ -228,11 +214,6 @@ static void mdlSetInputPortFrameData(SimStruct  *S,
 {
     ssSetInputPortFrameData(S, port, frameData);
 }
-
-
-
-
-
 /* Function: mdlInitializeSampleTimes =========================================
  * Abstract:
  *    Specifiy  the sample time.
@@ -249,8 +230,6 @@ static void mdlSetInputPortDataType(SimStruct *S, int port, DTypeId dType)
 {
     ssSetInputPortDataType(S, 0, dType);
 }
-
-
 
 #define MDL_SET_OUTPUT_PORT_DATA_TYPE
 static void mdlSetOutputPortDataType(SimStruct *S, int port, DTypeId dType)
@@ -278,8 +257,6 @@ static void mdlSetWorkWidths(SimStruct *S)
 
 #endif
 
-
-
 #define MDL_START  /* Change to #undef to remove function */
 #if defined(MDL_START)
 /* Function: mdlStart =======================================================
@@ -292,8 +269,6 @@ static void mdlStart(SimStruct *S)
 {
 }
 #endif /*  MDL_START */
-
-
 
 /* Function: mdlOutputs =======================================================
  *
