@@ -1,41 +1,49 @@
 function gen_make_file(include_path, source_folder, modelName, blockName, codeGenTarget, exeFlag)
-    %  Copyright(C) 2022 Renesas Electronics Corporation
-    %  RENESAS ELECTRONICS CONFIDENTIAL AND PROPRIETARY.
-    %  This program must be used solely for the purpose for which
-    %  it was furnished by Renesas Electronics Corporation. No part of this
-    %  program may be reproduced or disclosed to others, in any
-    %  form, without the prior written permission of Renesas Electronics
-    %  Corporation.
-    
-    %% ET-VPF F1KM Product Version - V1.00.00 - Req. 01
-    %% ID: ET_VPF_V1.00.00_CD_Req_01_003
-    %% Reference: {ET_VPF_V1.00.00_UD_Req_01_001, ET_VPF_V1.00.00_UD_Req_01_002, ET_VPF_V1.00.00_UD_Req_01_004, ET_VPF_V1.00.00_UD_Req_01_008}
-    % model property
 	
 	
 	%Đọc các tham số từ mô hình (modelName) và chuyển đổi các đường dẫn (include_path, source_folder, và csPath) 
 	%từ dấu chấm phẩy "" thành dấu gạch chéo "/". Nó cũng xác định xem công cụ xây dựng (buildTool) 
 	%đang sử dụng là "GHS Compiler" hay không (isGHS).*/
+
+    
 	
     vlabPath = get_param(modelName, 'VlabPath');
     %ghsPath = get_param(modelName, 'GHSPath'); % Remove this comment when support GHS compiler
     ghsPath   = ''; % Remove this line when support GHS compiler
     ostmClock = get_param(modelName, 'OSTMPCLK');
-    devSeries = get_param(modelName, 'DeviceSeries'); %Đọc thông số 
+    devSeries = get_param(modelName, 'DeviceSeries');
     csPath    = get_param(modelName, 'CSPath');
     buildTool = get_param(modelName, 'BuildTool');
         
-    isGHS = strcmp(buildTool, 'GHS Compiler'); % 
+    isGHS = strcmp(buildTool, 'GHS Compiler');
     
-    include_path  = strrep(include_path,'\','/');  %Tìm và thay thế chuỗi con newStr = strrep(str,old,new)
+    include_path  = strrep(include_path,'\','/');
     source_folder = strrep(source_folder,'\','/');
     csPath        = strrep(csPath,'\','/');
     
-    % Đọc danh sách các ngoại vi
-    %% ET-VPF F1KM Product Version - V1.00.00 - Req. 04
-    %% ID: ET_VPF_V1.00.00_CD_Req_04_003
-    %% Reference: {ET_VPF_V1.00.00_UD_Req_04_001, ET_VPF_V1.00.00_UD_Req_04_002, ET_VPF_V1.00.00_UD_Req_04_004, ET_VPF_V1.00.00_UD_Req_04_008}
-	%% -----------------------------------FIND SYSTEM -------------------------------------
+% ---------------------GIẢI THÍCH---------------------------
+%   vlabPath = get_param(modelName, 'VlabPath');    	Đọc giá trị của tham số VlabPath trong mô hình modelName.
+%   ghsPath = get_param(modelName, 'GHSPath');      	Đọc giá trị của tham số GHSPath trong mô hình modelName.
+%   
+%	ostmClock = get_param(modelName, 'OSTMPCLK'); 		Đọc giá trị của tham số OSTMPCLK trong mô hình modelName.
+%   devSeries = get_param(modelName, 'DeviceSeries'); 	Đọc giá trị của tham số DeviceSeries trong mô hình modelName.
+%   csPath = get_param(modelName, 'CSPath'); 			Đọc giá trị của tham số CSPath trong mô hình modelName.
+%   buildTool = get_param(modelName, 'BuildTool'); 		Đọc giá trị của tham số BuildTool trong mô hình modelName.
+%   
+%	isGHS = strcmp(buildTool, 'GHS Compiler'); 		So sánh giá trị của tham số buildTool với chuỗi 'GHS Compiler'. Nếu giá trị trùng nhau, giá trị của isGHS sẽ là 1, nếu không trùng nhau, giá trị của isGHS sẽ là 0.
+%
+%	Đoạn code trên đang thực hiện việc sử dụng hàm strrep để thay thế ký tự '' trong chuỗi include_path, source_folder và csPath thành '/'.
+%   include_path  = strrep(include_path,'\','/');
+%   source_folder = strrep(source_folder,'\','/');
+%   csPath        = strrep(csPath,'\','/');
+
+
+    
+
+%	---------------------------------------------------------------------------------------------------------------------
+%		
+%	---------------------------------------------------------------------------------------------------------------------
+
     ADCList     = find_system(codeGenTarget, 'MaskType', 'ADCH');
     PortInList  = find_system(codeGenTarget, 'MaskType', 'Port_In');
     PortOutList = find_system(codeGenTarget, 'MaskType', 'Port_Out');
