@@ -1,2 +1,4 @@
-2. https://www.tutorialspoint.com/cprogramming/index.htm           (ưu tiên 1)
-3. https://blog.luyencode.net/series/hoc-c-khong-kho/              (ưu tiên 2)
+https://www.tutorialspoint.com/python/index.htm         (ưu tiên 1)
+https://howkteam.vn/course/lap-trinh-python-co-ban/gioi-thieu-ngon-ngu-lap-trinh-python-1535            (ưu tiên 2)
+https://freetuts.net/so-luoc-datetime-trong-python-2061.html
+https://v1study.com/python-tham-khao-cach-chay-run-tap-lenh-python-cua-ban.html
