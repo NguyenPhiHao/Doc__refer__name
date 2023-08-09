@@ -1,8 +1,13 @@
-# Sử dụng ba dấu nháy
-print('''He said, "What's there?"''')
+Birth = [25, 12, 1999]
+Address = ["Luong Son", "Bac Binh", "Binh Thuan"]
+Information = ["Nguyen Phi Hao", Birth, Address]
+print(Information)
 
-# Trường hợp nháy đơn
-print('He said, "What's there?"')
+# Truy cập Từ ngoài vào trong
+Temp = Information[1]
+Temp[0] = 20
+print(Information)
 
-# Trường hợp nháy kép
-print("He said, \"What's there?\"")
+# Hoặc có thể viết ngắn gọn như sau
+Information[1][0] = 10
+print(Information)
